@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import styledComponents from "styled-components";
+import {createGlobalStyle} from "styled-components";
+
+import Blog from "../src/components/Blog/Blog";
+import Home from "../src/components/HomePage/Home";
+import Users from "../src/components/Users/Users";
+
+const GlobalStyle = createGlobalStyle`
+body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    fontFamily: 'Roboto', sans-serif !important;
+    margin:0;
+    padding:0;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<Home />}></Route>
+          <Route path="/blog" element={<Blog />}></Route>
+          <Route path="/users" element={<Users />}></Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 
